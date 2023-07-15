@@ -6,14 +6,13 @@ import { AppContext } from "../context/AppContext";
 import { Box } from "@mui/material";
 
 export const Todo = () => {
-    const val = useContext(AppContext);
-    const [todos, setTodos] = useState([]);
+    const {todos, setTodos} = useContext(AppContext);
 
-    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [compLen, setComLen] = useState(0);
 
     useEffect(() => {
+        setComLen(0);
         for(let i = 0; i < todos.length; i++) {
             if(todos[i].completed === true) {
                 setComLen((pr) => pr+1);
@@ -34,7 +33,6 @@ export const Todo = () => {
 
 
     const handleDelete = (id) => {
-        console.log(id, 'id')
         const data = todos.filter(el => el.id !== id);
         setTodos(data);
     }
@@ -59,11 +57,9 @@ export const Todo = () => {
         return (<div>Error...</div>)
     }
     return (
-        loading ? <div>loading...</div> :
         <Box>
             <TodoInput addTodo={addTodo}/>
             <TodoItem todos={todos} handleDelete={handleDelete} compLen={compLen} handleToggle={handleToggle}/>
         </Box>
-
     )
 }
