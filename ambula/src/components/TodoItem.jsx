@@ -12,7 +12,7 @@ export const TodoItem = ({todos, handleDelete, handleToggle, compLen}) => {
     }
     return (
         <>
-        <Box display='flex' p='20px' borderBottom='1px solid gray'>
+            <Box display='flex' p='20px' borderBottom='1px solid gray'>
                 <Box marginRight='30px'>No. of Todos: {todos.length}</Box>
                 <Box>No. of Completed Todos: {compLen}</Box>
             </Box>
